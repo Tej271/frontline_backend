@@ -7,9 +7,7 @@ const searchCompanies = async (req, res) => {
       return res.status(400).json({ message: "Query param 'q' is required" });
     }
 
-    const regex = new RegExp(q, "i"); // case-insensitive search
-
-    // If q is a valid number, include foundedYear in search
+    const regex = new RegExp(q, "i");
     const orConditions = [
       { name: regex },
       { industry: regex },
@@ -39,7 +37,7 @@ const getCompanies = async (req, res) => {
     const query = { ...req.query };
 
     if (query.isActive !== undefined) {
-      query.isActive = query.isActive === "true"; // string -> boolean
+      query.isActive = query.isActive === "true";
     }
     if (query.foundedYear !== undefined) {
       query.foundedYear = Number(query.foundedYear);
